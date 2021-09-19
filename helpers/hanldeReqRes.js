@@ -41,17 +41,7 @@ handler.handleReqRes = (req, res) => {
     const chosenHander = routes[trimedPath] ? routes[trimedPath] : notFoundHandle;
 
 
-    chosenHander(requresProperties, (statusCode, payload) => {
-        statusCode = typeof(statusCode) === 'number' ? statusCode : 500;
-        payload = typeof(payload) === 'object' ? payload : {};
-
-        const payloadString = JSON.stringify(payload);
-
-        // return the final res
-
-        res.writeHead(statusCode);
-        res.end(payloadString);
-    })
+   
 
 
     req.on('data', (buffer) => {
@@ -63,7 +53,18 @@ handler.handleReqRes = (req, res) => {
 
     req.on('end', () => {
         realData += decoder.end();
-        console.log(realData);
+        chosenHander(requresProperties, (statusCode, payload) => {
+            statusCode = typeof(statusCode) === 'number' ? statusCode : 500;
+            payload = typeof(payload) === 'object' ? payload : {};
+    
+            const payloadString = JSON.stringify(payload);
+    
+            // return the final res
+    
+            res.writeHead(statusCode);
+            res.end(payloadString);
+        });
+
         // response handle
         res.end('Hello Programmers');
     })
