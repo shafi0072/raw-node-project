@@ -4,12 +4,13 @@
 *Author: Shafi
 *Date:15/9/2021
 */
-// dependesis
-const {sampleHandle} = require('./handlers/routeHandlers/sampleHandler');
+// dependencies
+const { sampleHandler } = require('./handlers/routeHandlers/sampleHandler');
+const { userHandler } = require('./handlers/routeHandlers/userHandler');
 
 const routes = {
-    'sample': sampleHandle,
-    
+    sample: sampleHandler,
+    user: userHandler,
 };
 
-module.exports = routes
+module.exports = routes;

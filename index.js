@@ -8,7 +8,7 @@
 // Dependencies
 const http = require('http');
 const {handleReqRes} = require('./helpers/hanldeReqRes');
-const environment = require('./environment')
+const environment = require('./helpers/environment')
 const data = require('./lib/data')
 
 
